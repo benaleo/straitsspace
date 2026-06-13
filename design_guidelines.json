@@ -1,0 +1,94 @@
+{
+  "theme": "dark",
+  "archetype": "Archetype 4 (Swiss & High-Contrast) - Modified for Dark Fintech",
+  "typography": {
+    "headings": {
+      "font_family": "Cabinet Grotesk",
+      "classes": "font-sans font-bold tracking-tight text-slate-50",
+      "h1": "text-4xl sm:text-5xl",
+      "h2": "text-2xl sm:text-3xl",
+      "h3": "text-xl sm:text-2xl"
+    },
+    "body": {
+      "font_family": "Manrope",
+      "classes": "font-sans text-base leading-relaxed text-slate-300"
+    },
+    "mono": {
+      "font_family": "JetBrains Mono",
+      "classes": "font-mono text-sm tracking-tight text-slate-400"
+    }
+  },
+  "colors": {
+    "background": "bg-[#090A0F]",
+    "surface": "bg-[#11131E]",
+    "surface_glass": "bg-[#11131E]/80 backdrop-blur-xl",
+    "border": "border-white/10",
+    "primary": "bg-blue-600 hover:bg-blue-500 text-white",
+    "accent_text": "text-blue-400",
+    "text_main": "text-white",
+    "text_muted": "text-slate-400",
+    "status": {
+      "positive": "text-emerald-400 bg-emerald-400/10 border border-emerald-400/20",
+      "neutral": "text-slate-300 bg-slate-800 border border-slate-700",
+      "frustrated": "text-rose-400 bg-rose-400/10 border border-rose-400/20",
+      "hot": "text-orange-400 bg-orange-400/10 border border-orange-400/20",
+      "won": "text-emerald-500 bg-emerald-500/10 border border-emerald-500/20",
+      "lost": "text-slate-500 bg-slate-500/10 border border-slate-500/20"
+    }
+  },
+  "spacing_and_layout": {
+    "global": "Generous spacing, optical alignment, dense dashboard grid.",
+    "dashboard_grid": "grid grid-cols-1 md:grid-cols-12 gap-6",
+    "card_padding": "p-6",
+    "container": "mx-auto max-w-7xl px-4 sm:px-6 lg:px-8",
+    "surfaces": "Flat solid backgrounds with crisp 1px borders, subtle drop shadows only on floating elements."
+  },
+  "components": {
+    "buttons": "Flat rectangular, 0px or 4px radius max, crisp edges. CTAs must be blue-600 or white.",
+    "cards": "Flat background (bg-[#11131E]), border border-white/10, no large shadows.",
+    "chat_bubbles": {
+      "user": "bg-blue-600 text-white rounded-2xl rounded-br-sm px-4 py-3",
+      "bot": "bg-[#1C1F2E] text-slate-200 border border-white/5 rounded-2xl rounded-bl-sm px-4 py-3"
+    },
+    "badges": "Uppercase, tiny text (text-xs), wide tracking, 1px border.",
+    "product_card_inline": "Dense layout, flex-row or column, image on top/left, clear price in mono font, Buy CTA."
+  },
+  "animations": {
+    "hover": "transition-colors duration-200 ease-in-out",
+    "list_enter": "framer-motion staggered fade-up for queue cards",
+    "drawer": "slide-in from right with overlay"
+  },
+  "icons": {
+    "library": "lucide-react",
+    "style": "stroke-1.5, sharp and clear"
+  },
+  "media": {
+    "images": {
+      "pak_budi_avatar": {
+        "url": "https://images.unsplash.com/photo-1718209881007-c0ecdfc00f9d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzNDR8MHwxfHNlYXJjaHwzfHxwcm9mZXNzaW9uYWwlMjBhc2lhbiUyMG1hbiUyMHBvcnRyYWl0fGVufDB8fHx8MTc4MTMyMjY0M3ww&ixlib=rb-4.1.0&q=85",
+        "description": "Professional Asian man portrait, used for Pak Budi avatar."
+      },
+      "product_1": {
+        "url": "https://images.unsplash.com/photo-1674027392887-751d6396b710?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzZ8MHwxfHNlYXJjaHwxfHxwcmVtaXVtJTIwZS1jb21tZXJjZSUyMHByb2R1Y3R8ZW58MHx8fHwxNzgxMzIyNjQzfDA&ixlib=rb-4.1.0&q=85",
+        "description": "Premium digital e-commerce product thumbnail."
+      },
+      "abstract_background": {
+        "url": "https://images.unsplash.com/photo-1614850523011-8f49ffc73908?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NjZ8MHwxfHNlYXJjaHwzfHxhYnN0cmFjdCUyMGRhcmslMjBibHVlJTIwZmluYW5jZXxlbnwwfHx8fDE3ODEzMjI2NDN8MA&ixlib=rb-4.1.0&q=85",
+        "description": "Dark blue abstract background for hero/login if needed."
+      }
+    }
+  },
+  "instructions_to_main_agent": [
+    "Build the REP SIDE dashboard using a dense 'Control Room' grid.",
+    "Use 'StraitsSpace' wordmark top-left.",
+    "Implement the live auto-sorting queue of lead cards based on priority score.",
+    "Each lead card must have: name, priority score (w/ tooltip), est deal value (USD), sentiment badge, status pill, last-message snippet, AI Reply button, Escalate pill.",
+    "Include a Top Metrics bar with 'Before/After (FCFS vs StraitsSpace)' toggle.",
+    "Build the Simulator panel with buttons ('New high-value lead', 'Frustrated waiting customer', etc.) to inject sample data.",
+    "Build the Conversation drawer (slide-in) showing thread with an editable AI-drafted reply.",
+    "Build the CUSTOMER SIDE chat concierge with WhatsApp-meets-e-commerce vibe, inline product cards, wallet balance display, and checkout flow.",
+    "Build the ADMIN dashboard with analytics, product CRUD, and chat logs.",
+    "Use data-testid on all interactive elements.",
+    "STRICTLY adhere to color rules: do not use teal/purple for CTAs. Use Blue-600 or White. Dark fintech theme only."
+  ]
+}
