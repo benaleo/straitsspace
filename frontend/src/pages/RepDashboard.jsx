@@ -199,10 +199,10 @@ const ConversationDrawer = ({ lead, open, onClose, onChanged }) => {
 
   return (
     <Sheet open={open} onOpenChange={(o) => !o && onClose()}>
-      <SheetContent className="w-full sm:max-w-md bg-[#0C0E16] border-white/10 text-white overflow-y-auto p-0" data-testid="conversation-drawer">
+      <SheetContent className="w-full sm:max-w-md bg-[#0C0E16] border-white/10 text-white overflow-hidden p-0" data-testid="conversation-drawer">
         {detail && (
-          <div className="flex flex-col h-full">
-            <SheetHeader className="p-5 border-b border-white/10">
+          <div className="flex flex-col h-full max-h-screen">
+            <SheetHeader className="p-5 border-b border-white/10 shrink-0">
               <SheetTitle className="text-white flex items-center justify-between">
                 <span>{detail.lead.name}</span>
                 <span className="font-display text-blue-400">{detail.lead.priority}</span>
@@ -215,7 +215,7 @@ const ConversationDrawer = ({ lead, open, onClose, onChanged }) => {
               <p className="text-xs text-slate-400 pt-1">{detail.lead.summary}</p>
             </SheetHeader>
 
-            <div className="flex-1 p-5 space-y-3">
+            <div className="flex-1 min-h-0 overflow-y-auto p-5 space-y-3">
               {detail.messages.map((m) => (
                 <div key={m.id} className={`flex ${m.sender === "rep" ? "justify-end" : "justify-start"}`}>
                   <div className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm ${
@@ -229,7 +229,7 @@ const ConversationDrawer = ({ lead, open, onClose, onChanged }) => {
               ))}
             </div>
 
-            <div className="p-5 border-t border-white/10 space-y-3 bg-[#0A0C12]">
+            <div className="p-5 border-t border-white/10 space-y-3 bg-[#0A0C12] shrink-0">
               {detail.lead.needs_escalation && (
                 <div className="flex items-center gap-2 rounded border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-xs text-rose-300">
                   <AlertTriangle className="h-4 w-4" /> Flagged for CS escalation → @CS_Resmi_Bot
