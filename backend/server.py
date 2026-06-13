@@ -46,7 +46,9 @@ PAK_BUDI_SYSTEM = (
     "You are 'Pak Budi', the senior sales-intelligence engine for StraitsX, a regulated "
     "stablecoin & payments infrastructure company (XSGD, XUSD). Voice: warm, senior, elegant, "
     "professional — never robotic. Qualify each inbound lead, recommend catalog products when "
-    "there is purchase intent, and draft a concise on-brand reply. If the customer is frustrated, "
+    "there is purchase intent, and draft a concise on-brand reply. Write 'suggested_reply' in "
+    "Bahasa Indonesia by default (hangat, sopan, profesional); only switch language if the customer "
+    "clearly writes in another language. If the customer is frustrated, "
     "abusive, or asks something outside sales scope, set needs_escalation: true, keep the reply "
     "calmly reassuring, and signal a CS handoff (@CS_Resmi_Bot). Return ONLY the JSON object — "
     "no prose, no markdown."
@@ -206,23 +208,26 @@ async def heuristic_qualify(text: str, products: List[dict]) -> dict:
     rec_ids = [p["id"] for p in recs]
 
     if frustrated:
-        reply = ("I completely understand your frustration, and I sincerely apologise for the wait. "
-                 "Your time matters to us. I'm escalating this right now to our customer success desk "
-                 "(@CS_Resmi_Bot) so a specialist can assist you immediately. — Pak Budi")
+        reply = ("Saya benar-benar memahami kekecewaan Anda, dan saya mohon maaf atas keterlambatannya. "
+                 "Waktu Anda sangat berharga bagi kami. Saya langsung meneruskan hal ini ke tim Customer "
+                 "Success kami (@CS_Resmi_Bot) agar seorang spesialis dapat segera membantu Anda. — Pak Budi")
     elif high:
-        reply = ("Thank you for reaching out — it would be my privilege to support a requirement of this "
-                 "scale. StraitsX's XSGD & XUSD rails are built precisely for treasury-grade settlement. "
-                 "May I arrange a short call to tailor a package and pricing for your volume? — Pak Budi")
+        reply = ("Terima kasih telah menghubungi kami — merupakan suatu kehormatan dapat mendukung kebutuhan "
+                 "berskala besar seperti ini. Infrastruktur XSGD & XUSD dari StraitsX dirancang khusus untuk "
+                 "penyelesaian transaksi tingkat treasury. Bolehkah saya menjadwalkan panggilan singkat untuk "
+                 "menyusun paket dan harga sesuai volume Anda? — Pak Budi")
     elif buy:
-        names = ", ".join(p["name"] for p in recs) if recs else "a few options"
-        reply = (f"Wonderful — I'd be glad to help. Based on what you've shared, I'd recommend {names}. "
-                 "Shall I walk you through the details and get an order started for you? — Pak Budi")
+        names = ", ".join(p["name"] for p in recs) if recs else "beberapa pilihan"
+        reply = (f"Dengan senang hati saya bantu. Berdasarkan kebutuhan Anda, saya merekomendasikan {names}. "
+                 "Apakah Anda ingin saya jelaskan detailnya dan langsung membantu proses pemesanan? — Pak Budi")
     elif low:
-        reply = ("Happy to help whenever you're ready — no rush at all. If it's useful, I can share a quick "
-                 "overview of what suits you best. What are you most curious about? — Pak Budi")
+        reply = ("Dengan senang hati saya bantu kapan pun Anda siap — tidak perlu terburu-buru. Jika berkenan, "
+                 "saya bisa memberikan gambaran singkat yang paling sesuai untuk Anda. Apa yang ingin Anda "
+                 "ketahui lebih lanjut? — Pak Budi")
     else:
-        reply = ("Thank you for getting in touch. I'd be delighted to help — could you tell me a little more "
-                 "about what you're looking for so I can point you in the right direction? — Pak Budi")
+        reply = ("Terima kasih telah menghubungi kami. Saya dengan senang hati membantu — bisakah Anda ceritakan "
+                 "sedikit lebih banyak tentang apa yang Anda cari, agar saya dapat mengarahkan Anda dengan "
+                 "tepat? — Pak Budi")
 
     return {
         "intent_score": intent, "budget_signal": budget, "product_fit": product_fit,
@@ -660,7 +665,7 @@ async def telegram_webhook(secret: str, request: Request):
         await upsert_lead_from_qualify(payload, ai)
         reply = ai["suggested_reply"]
         if ai["needs_escalation"]:
-            reply += "\n\n(Routing you to @CS_Resmi_Bot)"
+            reply += "\n\n(Menghubungkan Anda ke @CS_Resmi_Bot)"
         await telegram_send(chat_id, reply)
         return {"ok": True}
     except Exception as e:
