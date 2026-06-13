@@ -109,7 +109,7 @@ export default function ChatWidget() {
       <button
         data-testid="chat-launcher"
         onClick={() => setOpen((o) => !o)}
-        className="fixed bottom-6 right-6 z-[60] h-14 w-14 rounded-full bg-blue-600 hover:bg-blue-500 shadow-lg shadow-blue-600/30 grid place-items-center text-white transition-colors duration-200"
+        className="fixed bottom-24 right-6 z-[60] h-14 w-14 rounded-full bg-blue-600 hover:bg-blue-500 shadow-lg shadow-blue-600/30 grid place-items-center text-white transition-colors duration-200"
         aria-label="Buka chat Pak Budi"
       >
         {open ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
@@ -123,7 +123,7 @@ export default function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 24, scale: 0.96 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-24 right-6 z-[60] w-[calc(100vw-3rem)] sm:w-[400px] h-[600px] max-h-[calc(100vh-8rem)] rounded-xl border border-white/10 bg-[#0C0E16] shadow-2xl flex flex-col overflow-hidden"
+            className="fixed bottom-44 right-6 z-[60] w-[calc(100vw-3rem)] sm:w-[400px] h-[600px] max-h-[calc(100vh-13rem)] rounded-xl border border-white/10 bg-[#0C0E16] shadow-2xl flex flex-col overflow-hidden"
           >
             {/* header */}
             <div className="flex items-center justify-between gap-3 p-3.5 border-b border-white/10 bg-[#11131E] shrink-0">
@@ -137,7 +137,7 @@ export default function ChatWidget() {
               <button data-testid="wallet-balance" onClick={() => setTopupOpen(true)}
                 className="flex items-center gap-1.5 rounded border border-white/10 bg-[#0C0E16] px-2.5 py-1.5 hover:border-blue-500/40 transition-colors">
                 <Wallet className="h-3.5 w-3.5 text-blue-400" />
-                <span className="font-mono text-xs font-bold">{fmtUSD2(wallet?.balance ?? 0)}</span>
+                <span className="font-mono text-xs font-bold">{wallet ? fmtUSD2(wallet.balance) : "…"}</span>
                 <Plus className="h-3 w-3 text-slate-500" />
               </button>
             </div>
